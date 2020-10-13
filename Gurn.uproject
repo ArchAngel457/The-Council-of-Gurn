@@ -6,7 +6,7 @@
 	"Plugins": [
 		{
 			"Name": "SymbolRecognizerPlugin",
-			"Enabled": true,
+			"Enabled": false,
 			"MarketplaceURL": "com.epicgames.launcher://ue/marketplace/content/1c85d21bc153403187523a6c04667e2a"
 		}
 	]
