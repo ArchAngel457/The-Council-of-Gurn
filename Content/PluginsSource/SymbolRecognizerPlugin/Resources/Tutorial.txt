@@ -1,0 +1,101 @@
+|Add New Profile|
+* Click Top Right button <Highlight>Add New</>
+  <img src="CustomProfile"/>
+
+  It will setup new directory where all new images will be stored.
+  <BL>"Plugins\SymbolRecognizerPlugin\Resources\Symbols"</>
+  (it should not be cooked)
+
+  You can setup many profiles for your game.
+  When you have large number of symbols (>30) it might be easier to split them into different profiles.
+  Profiles can be changed ingame by calling a method <BL>ChangeProfile</>
+
+  
+  
+
+|Set Symbols Amount and Images Per Symbol|
+* RIGHT SIDE panel <Highlight>(SETTINGS)</>.
+ <img src="SymbolsAndImages"/>
+
+* <H1>Symbols Amount</> is the number of signs that the system will learn to recognize.
+  e.g. You want the program to tell apart given letters(symbols) '<BL>A B</> and <BL>C</>' then the value should be set to <BL>3</>.
+
+* <H1>Images Per Symbol</> is the number of textures that will be used to learn recognizing specific symbol.
+  You must draw all the images for each 'Symbol'.
+  There should be at least <BL>5</> <Highlight>images per symbol</>, otherwise it might not be very accurate (recommended between 10-20).
+
+|Draw Images|
+  <H1>1)</> Choose an image slot for the drawing by clicking in a small tile.
+  <BL>(tile with exclamation mark indicates that it needs a drawing)</>
+       <img src="LeftBarTiles"/>
+
+  You can also use keyboard to speed up <BL>navigation between images and symbols</>.
+  <img src="NavBar"/>
+
+
+  <H1>2)</> In the center hold <Highlight>[Left Mouse Button]</> to <Bl>draw</>.
+
+  <H1>3)</> <BL>Save drawing</> in the current image slot.
+    <img src="CanvasPreview"/>
+
+  <H1>4)</> <BL>Clear the canvas</> with <Highlight>[Space]</> or <Highlight>[Right Mouse Button]</>.
+  <H1>5)</> Select next image and repeat all steps until <BL>all image slot are filled</>.
+
+
+* Images drawn for a given symbol should differ a bit
+  as if each image was drawn by a different person.
+
+|LEARN|
+* When all Symbols have their images drawn, you can press <Highlight>[LAUNCH LEARNING]</>.
+     <img src="Learning"/>
+  It starts a process of training new neural network
+  which result will be saved to currently selected profile.
+
+* Training can take some time (5-20 min).
+  It depends on how many symbols and how many textures there are to be learned.
+
+  <H1>TWEAKING PARAMETERS</> (Advanced Settings):
+* You can tweak certain parameters that can influence recognition accuracy and speed up training process.
+
+  <Highlight>Learning Rate</> - how fast the <BL>gradient descent</> goes.
+  Bigger value makes learning quicker but might be less precise and can overshoot the desired outcome.
+  Values between <BL>0.1</> and <BL>0.25</> seem to work well, but it all depends on images count and patterns complexity.
+  
+  <Highlight>Acceptable Training Accuracy</> - Lower value makes it quicker to accept a training result and move to the next training cycle.
+  Between <BL>0.8</> and <BL>0.96</> should work well.
+  
+  <Highlight>Delta Two Best Accuracy</> - Lower value makes it easier to accept training cycle result which speeds up the process.
+  The value <BL>must be lower than 'Acceptable Training Accuracy'</>.
+  Between <BL>0.7</> and <BL>0.95</> seems fine. 
+
+
+* Adjusting training parameters sometimes is more art than science and
+ 'learning' process may give completely different results, even with the same setup.
+
+  <H1>TEST!:</>
+   Having all done and trained, you can test how it works.
+  <Highlight>[TEST DRAWING ACCURACY]</> spawns a popup that shows how accurate is a pattern drawn in the <BL>Canvas space</> and which of the trained symbols resambles it the most.
+
+|IN GAME SETUP|
+  <H1>Selecting Profile:</>
+  <img src="ChangeProfile"/>
+   By default a profile is selected and saved in the pugin <BL>PROFILE section</>, but it can be changed later in a game with the method <Highlight>ChangeProfile()</>
+
+  <H1>Creating a drawing:</>
+  <img src="SimpleDrawingBP"/>
+  <Highlight>BeginDraw()</> best invoked just before drawing e.g. button <BL>PRESSED</> state. 
+  <Highlight>Draw()</> should be called during brush (cursor) movement.
+  <Highlight>EndDrawing()</> breaks current drawing line. Can be called in button <BL>RELEASED</> state.
+
+
+  <H1>Testing drawing.</>
+  <img src="TestDrawing"/>
+  <Highlight>TestDrawing()</> check if current drawing matches expected Symbol ID.
+  <Highlight>GetMostAccurateSymbol()</> returns Symbol ID that has the highest accuracy value for current drawing.
+
+ <H1>Clean up:</>
+ <Highlight>ClearCanvas()</> resets canvas state and should be called when we no longer need to test current drawing.
+
+ <H1>Helper Widgets:</>
+ <img src="WidgetHelpers"/>
+  
