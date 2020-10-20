@@ -1,0 +1,34 @@
+{
+	"FileVersion": 3,
+	"Version": 1,
+	"VersionName": "1.0",
+	"FriendlyName": "Symbol Recognizer Plugin",
+	"Description": "Neural network based tool to recognize simple patterns.",
+	"Category": "Misc",
+	"CreatedBy": "Piotr Macharzewski",
+	"CreatedByURL": "",
+	"DocsURL": "https://www.youtube.com/playlist?list=PLG_MAloxEjJ6LCacj16ZYJvxLhVJH1j4d",
+	"MarketplaceURL": "com.epicgames.launcher://ue/marketplace/content/1c85d21bc153403187523a6c04667e2a",
+	"SupportURL": "mailto:pmacharzewski@gmail.com",
+	"EngineVersion": "4.24.0",
+	"CanContainContent": true,
+	"Installed": true,
+	"Modules": [
+		{
+			"Name": "SymbolRecognizerPlugin",
+			"Type": "Runtime",
+			"LoadingPhase": "PreDefault",
+			"WhitelistPlatforms": [
+				"Win64"
+			]
+		},
+		{
+			"Name": "SymbolRecognizerPluginEditor",
+			"Type": "Editor",
+			"LoadingPhase": "Default",
+			"WhitelistPlatforms": [
+				"Win64"
+			]
+		}
+	]
+}
